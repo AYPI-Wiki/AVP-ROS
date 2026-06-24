@@ -1,0 +1,23 @@
+properties:
+  note.status:
+    displayName: 상태
+  note.venue:
+    displayName: 출처
+  note.rating:
+    displayName: 별점
+views:
+  - type: table
+    name: 표
+    filters:
+      and:
+        - file.folder.contains("01_Papers")
+        - note.type == "paper"
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - status
+      - venue
+      - rating
+    sort: []
