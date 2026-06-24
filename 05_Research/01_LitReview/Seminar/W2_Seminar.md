@@ -4,7 +4,7 @@ type: seminar-week
 tags: [seminar, ROS2, AVP-ROS]
 week: 2
 date: 2026-06-23
-presenters: [이준하, 윤성웅, 육시우]
+presenters: [이준하, 윤성웅, 육시우, 최민규]
 status: done
 ---
 
@@ -13,13 +13,14 @@ status: done
 # 📅 W2 세미나 — 통신 모델 · 센서 데이터 처리 (2주차)
 
 > **일시** 2026-06-23
-> **발표** 이준하 · 윤성웅 · 육시우 (3인 발표, 최민규 미발표)
-> **주제** 노드/토픽 통신 심화, ROS2↔AUTOSAR 통신 대응, 센서(Camera/LiDAR/IMU) 데이터 처리, KITTI 데이터셋, 그리고 출전 대회 소개
+> **발표** 이준하 · 윤성웅 · 육시우 · 최민규 (4인 발표)
+> **주제** 노드/토픽 통신 심화, ROS2↔AUTOSAR 통신 대응, 센서(Camera/LiDAR/IMU) 데이터 처리, KITTI 데이터셋, turtlesim 기반 CLI 실습(기본 명령어·Service·Topic·Action), 그리고 출전 대회 소개
 
 원본 발표자료(`_sources/seminar/`):
 - [[2026-06-23_이준하_노드구조 및 토픽통신.pdf]]
 - [[2026-06-23_윤성웅_ROS2 통신과 KITTI 데이터셋.pdf]]
 - [[2026-06-23_육시우_ROS2 센서 데이터 처리.pdf]]
+- [[2026-06-23_최민규_기본 명령어, Service, Topic, Action.pdf]]
 
 ---
 
@@ -84,7 +85,55 @@ ROS2 통신 3종을 AUTOSAR 인터페이스에 대응시켜 정리:
 
 ---
 
-## 6. 향후 계획 (윤성웅 제안)
+## 6. turtlesim 기반 CLI 실습 — 기본 명령어 · Service · Topic · Action (최민규)
+
+> 1주차 계획상 "2주차 입문" 핵심. `turtlesim`을 대상으로 ROS2 CLI를 직접 두드려 보며 4대 통신/실행 단위를 손에 익히는 실습 파트.
+
+### 기본 터미널 명령어 — 환경 설정
+- **`.bashrc`**: 새 터미널을 열 때마다 위→아래로 자동 실행되는 홈 디렉토리 숨김 설정 파일.
+  - 매번 `source /opt/ros/humble/setup.bash`를 치는 대신 `.bashrc` 맨 아래에 적어두면 터미널 열 때 ROS2가 자동 준비됨. (`code ~/.bashrc`로 편집)
+- **`alias`**: 긴 명령어를 짧은 단어로 등록. `alias 이름="값"` (등호 양옆 붙여쓰기 필수).
+  - 예: `alias humble="source /opt/ros/humble/setup.bash; echo \"ROS2 humble is activated\""` → `humble` 입력만으로 ROS2 활성화 (환경 충돌 방지용).
+
+### 기본 명령어 — Node 실행
+- **[[Node]]** = ROS 세계에서 실행 가능한 최소 단위(일 하나를 맡는 실행 단위). 실행: `ros2 run <PKG> <Node>`.
+- turtlesim 실습: 설치 `sudo apt install ros-humble-turtlesim` → 실행 `ros2 run turtlesim turtlesim_node`.
+- 노드 확인: `ros2 node list` (→ `/turtlesim`), `ros2 node info /turtlesim` (Sub/Pub·Service·Action 목록 일괄 확인).
+
+### [[Service]] — 요청/응답 (1:1)
+- Client가 Server에 **요청(request)** → Server가 수행 후 **응답(response)**.
+- 조회: `ros2 service list` / 타입 `ros2 service type <srv>` / 정의 `ros2 interface show <type>`.
+  - `srv` 정의는 `---`로 request/response 구분. 예) `TeleportAbsolute` = request `float32 x,y,theta` / response 없음. (**ROS는 각도를 radian 선호**)
+- 호출: `ros2 service call <서비스명> <타입> "<값>"`
+  ```bash
+  ros2 service call /turtle1/teleport_absolute turtlesim/srv/TeleportAbsolute "{x: 2, y: 2, theta: 1.57}"
+  ros2 service call /reset std_srvs/srv/Empty {}              # 위치 초기화
+  ros2 service call /spawn turtlesim/srv/Spawn "{x: 1, y: 1, theta: 0, name: ''}"  # 거북이 추가
+  ```
+  - spawn 후 `service list` 재확인 시 `/turtle2/...` 서비스가 추가 생성 → 거북이별 개별 제어 가능.
+
+### [[Topic]] — 단방향 연속 스트림 (Pub/Sub)
+- 대상 없이 Publish하는 노드와, 그 토픽을 구독하는 노드들. 토픽 = **이름 붙은 통로**, 여러 노드가 동시에 붙을 수 있음.
+- 조회: `ros2 topic list` (`-v` Pub/Sub 분리, `-t` 타입 표기) / `ros2 topic type <topic>` / `ros2 topic info <topic>` (타입·Publisher/Subscription count).
+- 구독: `ros2 topic echo /turtle1/pose` (`--once` 1회만). `rqt_graph`로 `/turtlesim → /turtle1/pose → 터미널` 흐름 확인.
+- 발행: `ros2 topic pub`
+  ```bash
+  ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist \
+    "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
+  ```
+  - `/turtle1/pose` = `turtlesim/msg/Pose` (x,y,theta + linear/angular velocity).
+  - `/turtle1/cmd_vel` = `geometry_msgs/msg/Twist` = linear(이동) + angular(회전) 3D 벡터. **turtlesim은 `linear.x`·`angular.z`만 사용.**
+
+### [[Action]] — 목표 + 피드백 + 결과 (장기 작업)
+- Server가 action 수행, Client가 목표 요청 → 중간과정을 **feedback**으로 흘려보내며 최종 **result** 보고.
+- 내부 구성: **목표·결과·취소 = Service**(수락/거부 1:1 응답 필요), **피드백·상태 = Topic**(응답 없이 계속 발송).
+- 실습: `turtlesim_node` + `turtle_teleop_key`로 화살표 키 주행 → `ros2 action list -t`로 `/turtle1/rotate_absolute [turtlesim/action/RotateAbsolute]` 확인.
+  - `interface show`상 3구분: 목표 `theta` / 결과 `delta` / 진행 `remaining` (모두 radian).
+- 목표 전송: `ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 3.14}"` → `Goal accepted` → `Result: delta...` → `status: SUCCEEDED`.
+
+---
+
+## 7. 향후 계획 (윤성웅 제안)
 1. 토픽 프로그래밍
 2. 차량용 데이터셋 소개 (KITTI, nuScenes 등)
 3. 논문 리뷰 — NeRF (Representing Scenes as Neural Radiance Fields)
