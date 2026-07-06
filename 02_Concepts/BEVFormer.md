@@ -32,5 +32,7 @@ aliases: [BEVFormer, 베브포머]
 ## 관련 노트
 - [[LSS]] — forward projection 대비 개념
 - [[BEV_LSS_vs_BEVFormer]] — 심층 비교(정의·수치·E2E 계보)
+- [[BEVFormer_실행_Runbook]] — 🛠️ 실제 실행 가이드 (Ubuntu 22.04)
+- [[deformable-attention]] — Spatial Cross-Attention의 핵심 연산
 - [[LiDAR]] · [[KITTI]] · [[YOLO]] — 인지 관련
 - [[HL FMA 2026]] · [[MOC_AVP-ROS]]
