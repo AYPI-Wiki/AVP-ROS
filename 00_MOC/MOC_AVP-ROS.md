@@ -25,6 +25,7 @@ tags: [MOC, AVP-ROS]
 ## 3️⃣ 프로젝트 / 실험
 - [[HL FMA 2026]] — 🏁 출전 목표 대회
 - H-Mobility-Autonomous-Advanced-Course-Simulation — 자율주행 시뮬레이션
+- [[LSS_실행_Runbook]] — 🛠️ LSS 실행 런북 (Ubuntu 22.04, 시각화→학습)
 
 ## 4️⃣ 작업 흐름
 - [[05_Research]] — LitReview → Idea → Experiment → Writing → Submission
