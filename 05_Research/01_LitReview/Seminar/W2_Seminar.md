@@ -142,8 +142,9 @@ ROS2 통신 3종을 AUTOSAR 인터페이스에 대응시켜 정리:
 - (세미나 중 나온 질문·논의 기록)
 
 ## 파생 (개념 노트로 분리)
-- [[OpenCV]] · [[LiDAR]] · [[IMU]] · [[KITTI]] · [[Parameter]] · [[cv_bridge]]
-- [[HL FMA 2026]] (대회) · VLA 논문 3종 → `01_Papers/`로
+- ✅ 생성됨: [[OpenCV]] · [[LiDAR]] · [[IMU]] · [[KITTI]] · [[Parameter]]
+- 🔲 예정: `cv_bridge` (개념 노트 미생성) · VLA 논문 3종 → `01_Papers/`로
+- [[HL FMA 2026]] (대회)
 
 ## 관련 노트
 - [[W1_Seminar]]
