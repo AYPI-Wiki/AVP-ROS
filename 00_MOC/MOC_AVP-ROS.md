@@ -16,6 +16,7 @@ tags: [MOC, AVP-ROS]
 - [[DDS]] — ROS2 통신 미들웨어
 - [[OpenCV]] · [[LiDAR]] · [[IMU]] — 센서 데이터 처리
 - [[YOLO]] — 객체 탐지
+- [[LSS]] · [[BEVFormer]] — 카메라 기반 BEV 인지 (forward / backward)
 
 ## 2️⃣ 주요 논문 / 데이터셋
 - [[KITTI]] — 자율주행 데이터셋

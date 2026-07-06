@@ -142,7 +142,7 @@ BEVFormer          LSS                       UniAD
 - 학습 데이터는 [[KITTI]](단안 위주)보다 **멀티뷰+3D 라벨**이 있는 nuScenes 계열이 BEV 학습에 적합(→ [[W2_Seminar]] 향후계획의 "nuScenes 소개"와 연결).
 
 ## 8. 더 볼 것 (후속 정리 예정)
-- 🔲 개념 노트 분리: `BEV` · `LSS` · `BEVFormer` · `deformable attention` · `BEVDepth`
+- 개념 노트 분리: ✅ [[LSS]] · [[BEVFormer]] / 🔲 예정 `BEV` · `deformable attention` · `BEVDepth`
 - 🔲 논문 리뷰 스텁: LSS(ECCV'20) · BEVFormer(ECCV'22) → 본 문서를 요약본으로 링크
 - ✅ 수치 검증(2026-07): BEVFormer nuScenes 수치 공식 저장소 대조 완료 → [출처](https://github.com/fundamentalvision/BEVFormer/blob/master/README.md)
 - 🔲 LSS 분할 IoU(nuScenes/Lyft) 수치는 아직 미확인 — 원 논문 대조 필요
