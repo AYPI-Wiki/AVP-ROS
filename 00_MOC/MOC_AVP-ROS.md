@@ -20,6 +20,7 @@ tags: [MOC, AVP-ROS]
 ## 2️⃣ 주요 논문 / 데이터셋
 - [[KITTI]] — 자율주행 데이터셋
 - VLA 논문 3종 (Reasoning-VLA · Impromptu-VLA · CoVLA, 2025)
+- [[BEV_LSS_vs_BEVFormer]] — 카메라 기반 BEV 인지 비교 (LSS vs BEVFormer)
 
 ## 3️⃣ 프로젝트 / 실험
 - [[HL FMA 2026]] — 🏁 출전 목표 대회
