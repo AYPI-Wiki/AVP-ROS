@@ -26,7 +26,7 @@ weeks: 6
 |------|------|--------|------|
 | [[W1_Seminar]] | ROS2 기본 개념 (개요·노드·DDS·WS·시뮬) | 4인 전원 | ✅ done (05-26) |
 | [[W2_Seminar]] | 통신 모델·센서 데이터·CLI 실습 (Topic·AUTOSAR·Camera/LiDAR/IMU·KITTI·turtlesim) | 4인 전원 | ✅ done (06-23) |
-| [[W3_Seminar]] | 서비스 구현·경로 계획과 제어 (커스텀 msg/srv·SfM+MVS·Dijkstra/A*·Nav2·DWA/TEB·PID) | 이준하·육시우 | ✅ done (06-30) |
+| [[W3_Seminar]] | 서비스 구현·경로 계획과 제어·학습 기반 BEV/Occupancy (커스텀 msg/srv·SfM+MVS·Dijkstra/A*·Nav2·DWA/TEB·PID·LSS/BEVFormer) | 이준하·육시우·윤성웅 | ✅ done (06-30) |
 | [[W4_Seminar]] | 응용 2 (파라미터·LOG·RQT·rosbag) | ⚠️ 미정 | todo |
 | [[W5_Seminar]] | 실전 1 (OpenCV·Optical Flow) | ⚠️ 미정 | todo |
 | [[W6_Seminar]] | 실전 2 (ROS_DOMAIN_ID·PID·statemachine) | ⚠️ 미정 | todo |

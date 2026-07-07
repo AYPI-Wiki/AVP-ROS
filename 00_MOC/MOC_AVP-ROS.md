@@ -16,9 +16,10 @@ tags: [MOC, AVP-ROS]
 - [[DDS]] — ROS2 통신 미들웨어
 - [[OpenCV]] · [[LiDAR]] · [[IMU]] — 센서 데이터 처리
 - [[YOLO]] — 객체 탐지
-- [[BEV]] — 조감도 표현 (상위 개념)
+- [[BEV]] · [[Occupancy]] — 조감도 표현 / 복셀 3D 점유 (상위 개념)
 - [[LSS]] · [[BEVFormer]] — 카메라 기반 BEV 인지 (forward / backward)
 - [[BEVDepth]] — 깊이 supervision으로 forward BEV 개선 · [[deformable-attention]] — backward BEV 핵심 연산
+- [[3DGS]] · [[NeRF]] · [[ParkGaussian]] — 차세대 렌더링 기반 3D 복원 (미래 확장)
 
 ## 2️⃣ 주요 논문 / 데이터셋
 - [[KITTI]] — 자율주행 데이터셋
